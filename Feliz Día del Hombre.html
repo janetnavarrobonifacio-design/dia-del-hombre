@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz Día del Hombre</title>
+<style>
+:root{--bg1:#fff1f3;--bg2:#ffd9e0;--tx:#4a1d2b;--ac:#d6336c;--card:rgba(255,255,255,.7);--code:#2b1620;--codetx:#ffc2d1;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1b0f17;--bg2:#3a1527;--tx:#ffe3ea;--ac:#ff6b9a;--card:rgba(255,255,255,.08);--code:#0e070b;--codetx:#ffc2d1}}
+:root[data-theme="dark"]{--bg1:#1b0f17;--bg2:#3a1527;--tx:#ffe3ea;--ac:#ff6b9a;--card:rgba(255,255,255,.08);--code:#0e070b;--codetx:#ffc2d1}
+html,body{height:100%;margin:0}
+body{background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--tx);font-family:Georgia,"Times New Roman",serif;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 28px 90px;opacity:0;transform:translateY(16px);transition:.7s;pointer-events:none}
+.slide.on{opacity:1;transform:none;pointer-events:auto}
+h1{font-size:clamp(2rem,7vw,3.6rem);margin:.2em 0;color:var(--ac)}
+h2{font-size:clamp(1.5rem,5vw,2.4rem);margin:.2em 0}
+p{font-size:clamp(1rem,3.2vw,1.3rem);line-height:1.6;max-width:34em;margin:.5em 0}
+pre{background:var(--code);color:var(--codetx);text-align:left;padding:16px 20px;border-radius:14px;font:clamp(.8rem,2.8vw,1rem)/1.6 ui-monospace,Menlo,Consolas,monospace;max-width:100%;overflow-x:auto;margin:14px 0}
+.grid{display:grid;gap:12px;max-width:520px;width:100%}
+.item{background:var(--card);border-radius:14px;padding:14px 18px;font-size:clamp(1rem,3.4vw,1.2rem);text-align:left;backdrop-filter:blur(6px)}
+.big{font-size:4rem;animation:beat 1.4s infinite}
+@keyframes beat{50%{transform:scale(1.15)}}
+.hint{font-size:.9rem;opacity:.7}
+#nav{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);display:flex;justify-content:center;align-items:center;gap:14px;z-index:5}
+button{font:inherit;border:0;border-radius:999px;padding:10px 20px;background:var(--ac);color:#fff;cursor:pointer;font-size:1rem}
+button.ghost{background:var(--card);color:var(--tx)}
+.dots{display:flex;gap:6px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--tx);opacity:.25}.dots i.on{opacity:1;background:var(--ac)}
+.h{position:fixed;bottom:-30px;font-size:20px;animation:up linear infinite;opacity:.5;pointer-events:none}
+@keyframes up{to{transform:translateY(-110vh) rotate(20deg)}}
+</style>
+</head>
+<body>
+<section class="slide on"><div class="big">💌</div><h1>Feliz Día del Hombre</h1><p>Una tarjeta hecha con cariño para el desarrollador de mi vida.</p><p class="hint">Toca “Siguiente” y activa la música 🎵</p></section>
+
+<section class="slide"><h2>Hoy compilé esto para ti</h2>
+<pre>const amor = new Relacion();
+amor.deploy("contigo");
+// status: 200 OK ❤️
+console.log("Te amo, mi amor");</pre>
+<p>Gracias por ser mi equipo, mi calma y mi mejor commit.</p></section>
+
+<section class="slide"><h2>Lo que más admiro de ti</h2><div class="grid">
+<div class="item">💡 Tu forma de resolver todo, hasta lo que parece imposible</div>
+<div class="item">🤝 Tu apoyo constante, en lo fácil y en lo difícil</div>
+<div class="item">😄 Cómo haces que hasta un lunes sea bonito</div></div></section>
+
+<section class="slide"><h2>Reporte de calidad ✅</h2>
+<pre>Tester: tu analista de calidad (QA)
+Casos de prueba: todos los días
+Bugs críticos: 0
+Resultado: APROBADO 💯</pre>
+<p>Como analista de calidad lo certifico: eres la mejor versión que encontré.</p></section>
+
+<section class="slide"><div class="big">❤️</div><h1>Te amo</h1><p>Hoy y todos los días celebro al hombre que eres. Gracias por ser tú, por estar a mi lado y por hacerme tan feliz.</p><p class="hint">Con todo mi cariño para ti, mi amor 💕</p></section>
+
+<div id="nav"><button class="ghost" id="prev">←</button><div class="dots" id="dots"></div><button id="next">Siguiente</button><button class="ghost" id="mus">🎵 Música</button></div>
+
+<script>
+var S=document.querySelectorAll(".slide"),i=0,dots=document.getElementById("dots");
+S.forEach(function(){dots.appendChild(document.createElement("i"))});
+function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach(function(s,k){s.classList.toggle("on",k===i);dots.children[k].classList.toggle("on",k===i)});
+document.getElementById("next").textContent=i===S.length-1?"Volver al inicio":"Siguiente"}
+document.getElementById("next").onclick=function(){go(i===S.length-1?0:i+1)};
+document.getElementById("prev").onclick=function(){go(i-1)};
+document.onkeydown=function(e){if(e.key==="ArrowRight")go(i+1);if(e.key==="ArrowLeft")go(i-1)};
+go(0);
+for(var h=0;h<14;h++){var e=document.createElement("div");e.className="h";e.textContent=["❤️","💕","💗"][h%3];e.style.left=(h*7+3)+"%";e.style.animationDuration=(9+h%5*3)+"s";e.style.animationDelay=(-h*2)+"s";document.body.appendChild(e)}
+// Música original generada (Web Audio): progresión Am - F - C - G en arpegio suave
+var ctx,master,playing=false,timer,nextT=0,step=0;
+var ch=[[220,261.63,329.63,440],[174.61,220,261.63,349.23],[130.81,164.81,196,261.63],[196,246.94,293.66,392]];
+function tone(f,t,d,v){var o=ctx.createOscillator(),g=ctx.createGain();o.type="triangle";o.frequency.value=f;
+g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.05)}
+function sched(){while(nextT<ctx.currentTime+.3){var c=ch[Math.floor(step/8)%4],k=step%8,seq=[0,1,2,3,2,1,2,3];
+tone(c[seq[k]]*(k===0?1:1),nextT,1.4,.12);if(k===0)tone(c[0]/2,nextT,3.2,.14);nextT+=.5;step++}}
+function start(){try{if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=.8;
+var d=ctx.createDelay(),fb=ctx.createGain();d.delayTime.value=.38;fb.gain.value=.35;master.connect(d);d.connect(fb);fb.connect(d);d.connect(ctx.destination);master.connect(ctx.destination)}
+ctx.resume();nextT=ctx.currentTime+.1;timer=setInterval(sched,100);playing=true;document.getElementById("mus").textContent="⏸ Música"}catch(e){}}
+function stop(){clearInterval(timer);if(ctx)ctx.suspend();playing=false;document.getElementById("mus").textContent="🎵 Música"}
+document.getElementById("mus").onclick=function(){playing?stop():start()};
+document.getElementById("next").addEventListener("click",function(){if(!playing&&!window._m){window._m=1;start()}});
+</script>
+</body>
+</html>
